@@ -5,9 +5,6 @@ import java.util.List;
 import com.anz.interview.domain.Department;
 import com.anz.interview.domain.DepartmentVO;
 
-/**
- * 
- */
 public interface DepartmentService {
 	
 	List<Department> getAllDepartments();

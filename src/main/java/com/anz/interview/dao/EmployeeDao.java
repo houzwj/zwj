@@ -8,8 +8,6 @@ public interface EmployeeDao {
 
     int insert(Employee record);
 
-    int insertSelective(Employee record);
-
   
     Employee selectByPrimaryKey(Long id);
 

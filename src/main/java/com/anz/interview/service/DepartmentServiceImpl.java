@@ -9,12 +9,6 @@ import com.anz.interview.dao.DepartmentDao;
 import com.anz.interview.domain.Department;
 import com.anz.interview.domain.DepartmentVO;
 
-/**
- * 功能概要：UserService实现类
- * 
- * @author linbingwen
- * @since  2015年9月28日 
- */
 @Service
 public class DepartmentServiceImpl implements DepartmentService{
 	@Autowired

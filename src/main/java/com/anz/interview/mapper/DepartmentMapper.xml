@@ -59,20 +59,24 @@
   </select>
   
  <select id="getDepartmentAndEmployees" parameterType="java.lang.Long"  resultMap="BaseResultMapVO">
- SELECT  department.* ,A.PARENTDEP ,B.subdep,C.EMPS FROM  department LEFT JOIN
-(
-SELECT id, NAME AS  PARENTDEP  FROM  department WHERE id =(SELECT parentId FROM  department WHERE id=#{id} )
-)  A  ON department.parentId=A.ID
-LEFT JOIN 
-(
-SELECT *, GROUP_CONCAT(NAME) subdep FROM  department WHERE parentId=#{id}
-) B ON department.ID=B.PARENTID
+	SELECT department.* ,A.PARENTDEP ,B.subdep,C.EMPS FROM department LEFT
+	JOIN
+	(
+	SELECT id, NAME AS PARENTDEP FROM department WHERE id =(SELECT parentId FROM
+	department WHERE id=#{id} )
+	) A ON department.parentId=A.ID
+	LEFT JOIN
+	(
+	SELECT *, GROUP_CONCAT(NAME) subdep FROM department WHERE parentId=#{id}
+	) B ON department.ID=B.PARENTID
 
-LEFT JOIN  
-(
-SELECT GROUP_CONCAT(employee.`ldapUserName`) emps , department.id  FROM  employee LEFT JOIN department ON employee.`departmentId`=department.id  WHERE employee.`departmentId`=#{id}
-) C ON  department.id=C.ID
-WHERE DEPARTMENT.ID=#{id}
+	LEFT JOIN
+	(
+	SELECT GROUP_CONCAT(employee.`ldapUserName`) emps , department.id FROM
+	employee LEFT JOIN department ON employee.`departmentId`=department.id
+	WHERE employee.`departmentId`=#{id}
+	) C ON department.id=C.ID
+	WHERE DEPARTMENT.ID=#{id}
  
  </select>
 </mapper>

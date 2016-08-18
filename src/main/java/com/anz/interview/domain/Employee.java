@@ -4,21 +4,21 @@ package com.anz.interview.domain;
 public class Employee {
     private Long id;
 
-    private String firstname;
+    private String firstname;//姓氏
 
-    private String lastname;
+    private String lastname;//名字
 
-    private String ldapusername;
+    private String ldapusername;//在公司花名
 
-    private String gender;
+    private String gender;//性别
 
-    private String birthdate;
+    private String birthdate;//出生日期
 
-    private String title;
+    private String title;//职称
 
-    private String grade;
+    private String grade;//级别
 
-    private Long departmentid;
+    private Long departmentid;//所属部门
 
     public Long getId() {
         return id;

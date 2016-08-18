@@ -3,11 +3,11 @@ package com.anz.interview.domain;
 public class Department {
     private Long id;
 
-    private String name;
+    private String name;//部门名称
 
-    private Long parentid;
+    private Long parentid;//上级 部门
 
-    private String location;
+    private String location;//位置
 
     public Long getId() {
         return id;
