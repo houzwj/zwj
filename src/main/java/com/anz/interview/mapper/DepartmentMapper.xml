@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anz.interview.dao.DepartmentDao" >
+  <resultMap id="BaseResultMap" type="com.anz.interview.domain.Department" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentid" jdbcType="BIGINT" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+  </resultMap>
+ 
+<!--   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" > -->
+<!--     select * -->
+<!--     from department -->
+<!--     where id = #{id,jdbcType=BIGINT} -->
+<!--   </select> -->
+<!--   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" > -->
+<!--     delete from department -->
+<!--     where id = #{id,jdbcType=BIGINT} -->
+<!--   </delete> -->
+ 
+<!--   <insert id="insert" parameterType="com.anz.interview.domain.Department" > -->
+<!--     insert into department (id, name, parentId,  -->
+<!--       location) -->
+<!--     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=BIGINT},  -->
+<!--       #{location,jdbcType=VARCHAR}) -->
+<!--   </insert> -->
+ 
+  
+ 
+<!--   <update id="updateByPrimaryKeySelective" parameterType="com.anz.interview.domain.Department" > -->
+<!--     update department -->
+<!--     <set > -->
+<!--       <if test="name != null" > -->
+<!--         name = #{name,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--       <if test="parentid != null" > -->
+<!--         parentId = #{parentid,jdbcType=BIGINT}, -->
+<!--       </if> -->
+<!--       <if test="location != null" > -->
+<!--         location = #{location,jdbcType=VARCHAR}, -->
+<!--       </if> -->
+<!--     </set> -->
+<!--     where id = #{id,jdbcType=BIGINT} -->
+<!--   </update> -->
+<!--   <update id="updateByPrimaryKey" parameterType="com.anz.interview.domain.Department" > -->
+<!--     update department -->
+<!--     set name = #{name,jdbcType=VARCHAR}, -->
+<!--       parentId = #{parentid,jdbcType=BIGINT}, -->
+<!--       location = #{location,jdbcType=VARCHAR} -->
+<!--     where id = #{id,jdbcType=BIGINT} -->
+<!--   </update> -->
+  <select id="getAllDepartments"   resultMap="BaseResultMap">
+    select *  from  department
+  </select>
+</mapper>

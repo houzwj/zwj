@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anz.interview.dao.EmployeeDao" >
+  <resultMap id="BaseResultMap" type="com.anz.interview.domain.Employee" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="firstname" property="firstname" jdbcType="VARCHAR" />
+    <result column="lastname" property="lastname" jdbcType="VARCHAR" />
+    <result column="ldapUserName" property="ldapusername" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="birthdate" property="birthdate" jdbcType="TIMESTAMP" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="departmentId" property="departmentid" jdbcType="BIGINT" />
+  </resultMap>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select *
+    from employee
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from employee
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="com.anz.interview.domain.Employee" >
+    insert into employee (id, firstname, lastname, 
+      ldapUserName, gender, birthdate, 
+      title, grade, departmentId
+      )
+    values (#{id,jdbcType=BIGINT}, #{firstname,jdbcType=VARCHAR}, #{lastname,jdbcType=VARCHAR}, 
+      #{ldapusername,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{birthdate,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, #{departmentid,jdbcType=BIGINT}
+      )
+  </insert>
+ 
+ 
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.anz.interview.domain.Employee" >
+    update employee
+    <set >
+      <if test="firstname != null" >
+        firstname = #{firstname,jdbcType=VARCHAR},
+      </if>
+      <if test="lastname != null" >
+        lastname = #{lastname,jdbcType=VARCHAR},
+      </if>
+      <if test="ldapusername != null" >
+        ldapUserName = #{ldapusername,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdate != null" >
+        birthdate = #{birthdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentid != null" >
+        departmentId = #{departmentid,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anz.interview.domain.Employee" >
+    update employee
+    set firstname = #{firstname,jdbcType=VARCHAR},
+      lastname = #{lastname,jdbcType=VARCHAR},
+      ldapUserName = #{ldapusername,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      birthdate = #{birthdate,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      departmentId = #{departmentid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
