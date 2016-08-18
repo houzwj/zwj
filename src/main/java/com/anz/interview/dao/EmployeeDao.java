@@ -1,8 +1,6 @@
 package com.anz.interview.dao;
 
 import com.anz.interview.domain.Employee;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface EmployeeDao {
   

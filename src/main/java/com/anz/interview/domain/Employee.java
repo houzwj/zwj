@@ -1,6 +1,5 @@
 package com.anz.interview.domain;
 
-import java.util.Date;
 
 public class Employee {
     private Long id;
