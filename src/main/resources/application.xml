@@ -57,14 +57,14 @@
     <!-- 配置Mybatis的文件 ，mapperLocations配置**Mapper.xml文件位置，configLocation配置mybatis-config文件位置-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath*:com/lin/mapper/**/*.xml"/>  
+        <property name="mapperLocations" value="classpath*:com/anz/interview/mapper/**/*.xml"/>  
 		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
 		<!-- <property name="typeAliasesPackage" value="com.tiantian.ckeditor.model" 
 			/> -->
 	</bean>
 
 	<!-- 自动扫描注解的bean -->
-	<context:component-scan base-package="com.lin.service" />
+	<context:component-scan base-package="com.anz.interview.service" />
 <!-- 事务管理器 
 	对mybatis操作数据库事务控制，spring使用jdbc的事务控制类
 -->
@@ -90,6 +90,6 @@
 </tx:advice>
 <!-- aop -->
 <aop:config>
-	<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.lin.service.impl.*.*(..))"/>
+	<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.anz.interview.service.*.*(..))"/>
 </aop:config>
 </beans>

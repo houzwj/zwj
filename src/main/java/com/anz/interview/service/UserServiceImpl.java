@@ -1,12 +1,12 @@
-package com.lin.service;
+package com.anz.interview.service;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import com.lin.dao.UserDao;
-import com.lin.domain.User;
+import com.anz.interview.dao.UserDao;
+import com.anz.interview.domain.User;
 
 /**
  * 功能概要：UserService实现类

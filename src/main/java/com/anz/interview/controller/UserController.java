@@ -1,4 +1,4 @@
-package com.lin.controller;
+package com.anz.interview.controller;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.lin.domain.User;
-import com.lin.service.UserService;
+import com.anz.interview.domain.User;
+import com.anz.interview.service.UserService;
 
 /**
  * 功能概要：UserController

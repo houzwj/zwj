@@ -1,9 +1,9 @@
-package com.lin.dao;
+package com.anz.interview.dao;
 
 
 import java.util.List;
 
-import com.lin.domain.User;
+import com.anz.interview.domain.User;
 
 /**
  * 功能概要：User的DAO类
