@@ -7,49 +7,72 @@
     <result column="parentId" property="parentid" jdbcType="BIGINT" />
     <result column="location" property="location" jdbcType="VARCHAR" />
   </resultMap>
+   <resultMap id="BaseResultMapVO" type="com.anz.interview.domain.DepartmentVO" extends="BaseResultMap" >
+    <id column="PARENTDEP" property="parentDep" jdbcType="BIGINT" />
+    <result column="subdep" property="subDeps" jdbcType="VARCHAR" />
+    <result column="EMPS" property="emps" jdbcType="BIGINT" />
+    </resultMap>
  
-<!--   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" > -->
-<!--     select * -->
-<!--     from department -->
-<!--     where id = #{id,jdbcType=BIGINT} -->
-<!--   </select> -->
-<!--   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" > -->
-<!--     delete from department -->
-<!--     where id = #{id,jdbcType=BIGINT} -->
-<!--   </delete> -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select *
+    from department
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from department
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
  
-<!--   <insert id="insert" parameterType="com.anz.interview.domain.Department" > -->
-<!--     insert into department (id, name, parentId,  -->
-<!--       location) -->
-<!--     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=BIGINT},  -->
-<!--       #{location,jdbcType=VARCHAR}) -->
-<!--   </insert> -->
+  <insert id="insert" parameterType="com.anz.interview.domain.Department" >
+    insert into department ( name, parentId, 
+      location)
+    values ( #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=BIGINT}, 
+      #{location,jdbcType=VARCHAR})
+  </insert>
  
   
  
-<!--   <update id="updateByPrimaryKeySelective" parameterType="com.anz.interview.domain.Department" > -->
-<!--     update department -->
-<!--     <set > -->
-<!--       <if test="name != null" > -->
-<!--         name = #{name,jdbcType=VARCHAR}, -->
-<!--       </if> -->
-<!--       <if test="parentid != null" > -->
-<!--         parentId = #{parentid,jdbcType=BIGINT}, -->
-<!--       </if> -->
-<!--       <if test="location != null" > -->
-<!--         location = #{location,jdbcType=VARCHAR}, -->
-<!--       </if> -->
-<!--     </set> -->
-<!--     where id = #{id,jdbcType=BIGINT} -->
-<!--   </update> -->
-<!--   <update id="updateByPrimaryKey" parameterType="com.anz.interview.domain.Department" > -->
-<!--     update department -->
-<!--     set name = #{name,jdbcType=VARCHAR}, -->
-<!--       parentId = #{parentid,jdbcType=BIGINT}, -->
-<!--       location = #{location,jdbcType=VARCHAR} -->
-<!--     where id = #{id,jdbcType=BIGINT} -->
-<!--   </update> -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.anz.interview.domain.Department" >
+    update department
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parentId = #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anz.interview.domain.Department" >
+    update department
+    set name = #{name,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=BIGINT},
+      location = #{location,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   <select id="getAllDepartments"   resultMap="BaseResultMap">
     select *  from  department
   </select>
+  
+ <select id="getDepartmentAndEmployees" parameterType="java.lang.Long"  resultMap="BaseResultMapVO">
+ SELECT  department.* ,A.PARENTDEP ,B.subdep,C.EMPS FROM  department LEFT JOIN
+(
+SELECT id, NAME AS  PARENTDEP  FROM  department WHERE id =(SELECT parentId FROM  department WHERE id=#{id} )
+)  A  ON department.parentId=A.ID
+LEFT JOIN 
+(
+SELECT *, GROUP_CONCAT(NAME) subdep FROM  department WHERE parentId=#{id}
+) B ON department.ID=B.PARENTID
+
+LEFT JOIN  
+(
+SELECT GROUP_CONCAT(employee.`ldapUserName`) emps , department.id  FROM  employee LEFT JOIN department ON employee.`departmentId`=department.id  WHERE employee.`departmentId`=#{id}
+) C ON  department.id=C.ID
+WHERE DEPARTMENT.ID=#{id}
+ 
+ </select>
 </mapper>

@@ -1,8 +1,9 @@
 package com.anz.interview.dao;
 
-import com.anz.interview.domain.Department;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
+
+import com.anz.interview.domain.Department;
+import com.anz.interview.domain.DepartmentVO;
 
 public interface DepartmentDao {
   
@@ -21,4 +22,6 @@ public interface DepartmentDao {
     int updateByPrimaryKey(Department record);
     
     List<Department> getAllDepartments();
+    
+    DepartmentVO   getDepartmentAndEmployees(Long id);
 }
