@@ -23,8 +23,19 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `gender`;
+
+CREATE TABLE `gender` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) DEFAULT NULL,
+  `code` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 insert into `employee` (`id`, `firstname`, `lastname`, `ldapUserName`, `gender`, `birthdate`, `title`, `grade`, `departmentId`) values('1','kevin','dulant','jim','0','2016-08-18 11:16:23','aa','1','2');
 insert into `department` (`id`, `name`, `parentId`, `location`) values('1','dep1',NULL,'dd');
 insert into `department` (`id`, `name`, `parentId`, `location`) values('2','department','1','ss');
 insert into `department` (`id`, `name`, `parentId`, `location`) values('3','dep3','2','aa');
-
+insert into `gender` (`id`, `name`, `code`) values('1','male','0');
+insert into `gender` (`id`, `name`, `code`) values('2','female','1');
