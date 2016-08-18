@@ -1,9 +1,14 @@
 package com.lin.controller;
 
-import javax.annotation.Resource;
+import java.util.List;
 
+
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lin.domain.User;
@@ -17,7 +22,7 @@ import com.lin.service.UserService;
  */
 @Controller
 public class UserController {
-	@Resource
+	@Autowired
 	private UserService userService;
 	
 	@RequestMapping("/")  
@@ -27,4 +32,9 @@ public class UserController {
 	    mav.addObject("user", user); 
         return mav;  
     }  
+	@RequestMapping(value="/users",method=RequestMethod.GET)
+	@ResponseBody
+	public List<User>  getAll(){
+		return userService.getAll();
+	}
 }

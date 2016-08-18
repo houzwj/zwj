@@ -1,6 +1,6 @@
 package com.lin.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.lin.domain.User;
 
@@ -12,5 +12,7 @@ import com.lin.domain.User;
  */
 public interface UserService {
 	User selectUserById(Integer userId);
+	
+	List<User> getAll();
 
 }

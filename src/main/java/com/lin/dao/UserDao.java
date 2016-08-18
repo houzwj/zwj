@@ -1,6 +1,8 @@
 package com.lin.dao;
 
 
+import java.util.List;
+
 import com.lin.domain.User;
 
 /**
@@ -18,5 +20,8 @@ public interface UserDao {
 	 * @return
 	 */
 	public User selectUserById(Integer userId);
+	
+	
+	public List<User> getAll();
 
 }

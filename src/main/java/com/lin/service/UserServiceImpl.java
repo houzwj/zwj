@@ -1,5 +1,7 @@
 package com.lin.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,10 @@ public class UserServiceImpl implements UserService{
 	public User selectUserById(Integer userId) {
 		return userDao.selectUserById(userId);
 		
+	}
+
+	public List<User> getAll() {
+		return userDao.getAll();
 	}
 
 }
